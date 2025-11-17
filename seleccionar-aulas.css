@@ -1,0 +1,49 @@
+.fila-imagenes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px 15px;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+.fila-imagenes img:hover {
+  transform: scale(1.1);
+}
+
+/* ==== BOTONES DE FILTRO ==== */
+.contenedor-botones-filtro {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    margin: 20px 0; 
+}
+
+/* ESTADO INICIAL (OUTLINE) */
+.boton-filtro {
+    border: 2px solid var(--color-verde-claro);
+    color: var(--color-verde-claro);
+    background-color: transparent;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* CUANDO SE PASA EL CURSOR POR ENCIMA */
+.boton-filtro:hover {
+    background-color: var(--color-verde-claro);
+    color: var(--color-blanco);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* CUANDO EL BOTON ESTÁ ACTIVO (SELECCIONADO) */
+.boton-filtro.activo {
+    background-color: var(--color-verde-oscuro);
+    border-color: var(--color-verde-oscuro);
+    color: var(--color-blanco);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

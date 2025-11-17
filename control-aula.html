@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/control-aula.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/componentes/mostrar-compus.css') }}">
+    <title>Control de Aula: {{ aula.nombre }}</title>
+</head>
+
+<body class="bg-light" data-usuario-id="{{ current_user.id }}" data-aula-id="{{ aula.id_aula }}"
+    data-rol-usuario="{{ current_user.rol }}">
+    {% include "/componentes/barra-navegacion.html" %}
+
+    <div class="container mt-5 pt-5">
+        <header class="text-center my-4">
+            <h1>Control de aula: {{ aula.nombre }}</h1>
+        </header>
+
+        <div class="card shadow-sm p-4 mb-5 text-center">
+            <h1>Dispositivos del aula</h1>
+            <div class="row text-center">
+                <div class="col-md-4 mb-3">
+                    <h5>Proyector</h5>
+                    <div class="form-check form-switch d-flex justify-content-center">
+                        <input class="form-check-input switch-dispositivos-aula" type="checkbox"
+                            data-dispositivo="proyector" id="switchProyector" {% if aula.proyector==1 %}checked{% endif
+                            %} {% if current_user.rol=='alumno' %}disabled{% endif %}>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Splitter</h5>
+                    <div class="form-check form-switch d-flex justify-content-center">
+                        <input class="form-check-input switch-dispositivos-aula" type="checkbox"
+                            data-dispositivo="splitter" id="switchSplitter" {% if aula.splitter==1 %}checked{% endif %}
+                            {% if current_user.rol=='alumno' %}disabled{% endif %}>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Audio</h5>
+                    <div class="form-check form-switch d-flex justify-content-center">
+                        <input class="form-check-input switch-dispositivos-aula" type="checkbox"
+                            data-dispositivo="audio" id="switchAudio" {% if aula.audio==1 %}checked{% endif %} {% if
+                            current_user.rol=='alumno' %}disabled{% endif %}>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="mt-5">
+            <h2 class="text-center">Computadoras del aula</h2>
+            {% include "/componentes/mostrar-compus.html" %}
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="{{ url_for('static', filename='js/reportes.js')}}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/mostrarCompus.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/controlAula.js') }}"></script>
+</body>
+
+</html>

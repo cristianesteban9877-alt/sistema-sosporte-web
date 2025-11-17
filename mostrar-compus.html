@@ -1,0 +1,351 @@
+<div id="contenedorBdr" class="row justify-content-center"></div>
+
+<template id="plantillaCompu">
+	<div class="card m-2 p-3 tarjeta-interactiva" style="width: 14rem; cursor: pointer;" data-bs-toggle="modal"
+		data-bs-target="#modalInfoBdr" data-bdr-id="">
+		<img src="" alt="Computadora" class="card-img-top mb-2" data-compu="imagen" />
+		<h5 class="card-title text-center" data-compu="titulo"></h5>
+		<p class="text-center mb-2">
+			<span data-compu="estado_actual" class="fw-bold"></span>
+		</p>
+
+		<div class="d-flex justify-content-center align-items-center gap-3 mb-2">
+			<div class="d-flex align-items-center gap-1">
+				<div class="status-indicator" data-compu="indicador-gabinete"
+					style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #666;"
+					title="Estado del gabinete">
+				</div>
+				<small class="text-muted" data-compu="texto-gabinete"></small>
+			</div>
+			<div class="d-flex align-items-center gap-1">
+				<div class="status-indicator" data-compu="indicador-monitor"
+					style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #666;"
+					title="Estado del monitor">
+				</div>
+				<small class="text-muted" data-compu="texto-monitor"></small>
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-center align-items-center gap-3">
+			<div class="d-flex align-items-center gap-1">
+				<div class="status-indicator" data-compu="indicador-mouse"
+					style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #666;"
+					title="Estado del mouse">
+				</div>
+				<small class="text-muted" data-compu="texto-mouse"></small>
+			</div>
+			<div class="d-flex align-items-center gap-1">
+				<div class="status-indicator" data-compu="indicador-teclado"
+					style="width: 14px; height: 14px; border-radius: 50%; border: 1px solid #666;"
+					title="Estado del teclado">
+				</div>
+				<small class="text-muted" data-compu="texto-teclado"></small>
+			</div>
+		</div>
+	</div>
+</template>
+
+<div class="modal fade" id="modalInfoBdr" tabindex="-1" aria-labelledby="modalInfoBdrLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalInfoBdrLabel">BDR</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-lg-7">
+						<h6 class="fw-bold text-uppercase text-muted"><i class="bi bi-activity"></i> Estado General</h6>
+						<div class="text-center mb-3">
+							<img id="modalEstadoImagen" src="" alt="Estado BDR" class="estado-bdr-imagen-modal mb-2" />
+							<h4 id="modalEstadoTexto" class="fw-bold"></h4>
+						</div>
+
+						<hr>
+						<h6 class="fw-bold text-uppercase text-muted"><i class="bi bi-keyboard"></i> Periféricos</h6>
+						<div class="row mb-3">
+							<div class="col-md-6 mb-2">
+								<label for="selectEstadoMouse" class="form-label"><b>Mouse: </b></label>
+								<select id="selectEstadoMouse" class="form-select" data-periferico="mouse" {% if
+									current_user.rol=='alumno' %} disabled {% endif %}>
+									<option value="0">No tiene</option>
+									<option value="1">No funciona</option>
+									<option value="2">Funciona con problemas</option>
+									<option value="3">Funciona</option>
+								</select>
+							</div>
+							<div class="col-md-6 mb-2">
+								<label for="selectEstadoTeclado" class="form-label"><b>Teclado: </b></label>
+								<select id="selectEstadoTeclado" class="form-select" data-periferico="teclado" {% if
+									current_user.rol=='alumno' %} disabled {% endif %}>
+									<option value="0">No tiene</option>
+									<option value="1">No funciona</option>
+									<option value="2">Funciona con problemas</option>
+									<option value="3">Funciona</option>
+								</select>
+							</div>
+						</div>
+
+						<hr>
+						<h6 class="fw-bold text-uppercase text-muted"><i class="bi bi-cpu"></i> Hardware</h6>
+						<div class="row">
+							<div class="col-md-6 mb-3 hardware-col">
+								<b>Gabinete</b>
+								<div id="infoGabinete" class="d-none seccion-hardware-info">
+									<ul class="list-unstyled small mt-2">
+										<li><b>ID: </b><span id="gabineteId"></span></li>
+										<li><b>Motherboard: </b><span id="gabineteMotherboard"></span></li>
+										<li><b>Procesador: </b><span id="gabineteProcesador"></span></li>
+										<li><b>RAM: </b><span id="gabineteRam"></span></li>
+										<li><b>Disco: </b><span id="gabineteAlmacenamiento"></span></li>
+										<li><b>SO: </b><span id="gabineteSo"></span></li>
+										<li><b>Fuente: </b><span id="gabineteFuente"></span></li>
+									</ul>
+									{% if current_user.rol in ['soporte', 'admin', 'profesor-tecnica'] %}
+									<div class="d-flex gap-2 mt-2">
+										<button class="btn btn-info btn-sm" id="botonMoverGabinete"><i
+												class="bi bi-arrows-move"></i> Mover</button>
+										<button class="btn btn-danger btn-sm" id="botonQuitarGabinete"><i
+												class="bi bi-x-circle"></i> Quitar</button>
+									</div>
+									{% endif %}
+								</div>
+								<div id="noGabineteAsignado" class="d-none seccion-hardware-vacia text-center p-3">
+									<p class="text-muted small">No hay gabinete asignado.</p>
+									{% if current_user.rol in ['soporte', 'admin', 'profesor-tecnica']%}
+									<button class="btn btn-success btn-sm" id="botonAsignarGabinete">
+										<i class="bi bi-plus-circle"></i> Asignar Gabinete
+									</button>
+									{% endif %}
+								</div>
+							</div>
+							<div class="col-md-6 mb-3 hardware-col">
+								<b>Monitor</b>
+								<div id="infoMonitor" class="d-none seccion-hardware-info">
+									<ul class="list-unstyled small mt-2">
+										<li><b>ID: </b><span id="monitorId"></span></li>
+										<li><b>Marca: </b><span id="monitorMarca"></span></li>
+										<li><b>Modelo: </b><span id="monitorModelo"></span></li>
+										<li><b>Salida: </b><span id="monitorSalidaVideo"></span></li>
+									</ul>
+									{% if current_user.rol in ['soporte', 'admin', 'profesor-tecnica'] %}
+									<div class="d-flex gap-2 mt-2">
+										<button class="btn btn-info btn-sm" id="botonMoverMonitor"><i
+												class="bi bi-arrows-move"></i> Mover</button>
+										<button class="btn btn-danger btn-sm" id="botonQuitarMonitor"><i
+												class="bi bi-x-circle"></i> Quitar Monitor</button>
+									</div>
+									{% endif %}
+								</div>
+								<div id="noMonitorAsignado" class="d-none seccion-hardware-vacia text-center p-3">
+									<p class="text-muted small">No hay monitor asignado.</p>
+									{% if current_user.rol in ['soporte', 'admin', 'profesor-tecnica'] %}
+									<button class="btn btn-success btn-sm" id="botonAsignarMonitor">
+										<i class="bi bi-plus-circle"></i> Asignar Monitor
+									</button>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+
+						<hr>
+						{% if current_user.rol in ['soporte', 'admin', 'profesor-tecnica']%}
+						<h6 class="fw-bold text-uppercase text-muted"><i class="bi bi-clipboard-data"></i> Acciones de
+							Soporte</h6>
+						<div id="accionesReporteDinamicas" class="d-grid gap-2"></div>
+						{% endif %}
+						{% if current_user.rol in ['alumno', 'profesor'] %}
+						<h6 class="fw-bold text-uppercase text-muted"><i class="bi bi-clipboard-data"></i> Reportar
+							Problema</h6>
+						<div id="accionesReporteDinamicas" class="d-grid gap-2"></div>
+						{% endif %}
+					</div>
+
+					<div class="col-lg-5 border-start">
+						<h6><i class="bi bi-file-earmark-text"></i> Historial de reportes del Gabinete</h6>
+						<div id="historialGabineteContenido" class="list-group contenedor-historial"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalMoverGabinete" tabindex="-1" aria-labelledby="modalMoverGabineteLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalMoverGabineteLabel">Mover Gabinete</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body">
+				<form id="formMoverGabinete">
+					<div class="mb-3">
+						<label for="selectAulaDestino" class="form-label"><b>1. Seleccione Aula de Destino:</b></label>
+						<select class="form-select" id="selectAulaDestino"></select>
+					</div>
+					<div class="mb-3">
+						<label for="selectBdrDestino" class="form-label"><b>2. Seleccione BDR de Destino: </b></label>
+						<select class="form-select" id="selectBdrDestino" disabled></select>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" id="btnConfirmarMovimiento" disabled>Confirmar
+					Movimiento</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalMoverMonitor" tabindex="-1" aria-labelledby="modalMoverMonitorLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalMoverMonitorLabel">Mover Monitor</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body">
+				<form id="formMoverMonitor">
+					<div class="mb-3">
+						<label for="selectAulaDestinoMonitor" class="form-label"><b>1. Seleccione Aula de Destino:
+							</b></label>
+						<select class="form-select" id="selectAulaDestinoMonitor"></select>
+					</div>
+					<div class="mb-3">
+						<label for="selectBdrDestinoMonitor" class="form-label"><b>2. Seleccione BDR de Destino:
+							</b></label>
+						<select class="form-select" id="selectBdrDestinoMonitor" disabled></select>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" id="btnConfirmarMovimientoMonitor" disabled>Confirmar
+					Movimiento</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalCambiarEstado" tabindex="-1" aria-labelledby="modalCambiarEstadoLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalCambiarEstadoLabel">Cambio de Estado a BDR</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body">
+				<form id="formCambiarEstado">
+					<input type="hidden" id="campoOcultoNuevoEstado" value="">
+					<div class="mb-3">
+						<label for="descripcionCambioEstado" class="form-label"><b>Agregue un mensaje adicional si lo
+								desea: </b></label>
+						<textarea id="descripcionCambioEstado" class="form-control" rows="3"
+							placeholder="Puede dejar esto vacío si quiere."></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" id="btnConfirmarCambioEstado">Confirmar Cambio</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalAsignarGabinete" tabindex="-1" aria-labelledby="modalAsignarGabineteLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalAsignarGabineteLabel">Asignar Gabinete</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group" id="contenidoModalGabinete"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalAsignarMonitor" tabindex="-1" aria-labelledby="modalAsignarMonitorLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalAsignarMonitorLabel">Asignar Monitor</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group" id="contenidoModalMonitor"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalCrearAviso" tabindex="-1" aria-labelledby="modalCrearAvisoLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalCrearAvisoLabel"><i class="bi bi-info-circle"></i> Crear Aviso
+					Informativo</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body">
+				<form id="formCrearAviso">
+					<div class="mb-3">
+						<label for="descripcionAviso" class="form-label"><b>Mensaje del aviso:</b></label>
+						<textarea id="descripcionAviso" class="form-control" rows="3" required></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" id="btnConfirmarAviso">Enviar Aviso</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalConfirmacionGeneral" tabindex="-1" aria-labelledby="modalConfirmacionGeneralLabel"
+	aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header" id="modalConfirmacionGeneralHeader">
+				<h5 class="modal-title" id="modalConfirmacionGeneralLabel"><i
+						class="bi bi-exclamation-triangle-fill"></i> Confirmar Acción</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+			</div>
+			<div class="modal-body" id="modalConfirmacionGeneralBody">
+				¿Estás seguro?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" id="btnConfirmarGeneral">Confirmar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<template id="plantillaItemAsignable">
+	<li class="list-group-item list-group-item-action" style="cursor: pointer;">
+		<span data-item="texto"></span>
+	</li>
+</template>
+
+<template id="plantillaReporteHistorial">
+	<div class="list-group-item">
+		<div class="d-flex w-100 justify-content-between">
+			<small class="text-muted" data-reporte="fecha"></small>
+			<button type="button" class="btn-close boton-eliminar-reporte" aria-label="Eliminar reporte"
+				data-reporte="eliminar" title="Eliminar reporte" style="display: none;"></button>
+		</div>
+		<p class="mb-1" data-reporte="problema"></p>
+		<small class="text-muted" data-reporte="usuario"></small>
+	</div>
+</template>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/seleccionar-aulas.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/componentes/mostrar-aulas.css') }}" />
+    <title>Seleccionar aulas</title>
+</head>
+
+<body class="bg-light" data-rol-usuario="{{ current_user.rol }}" data-idaula-usuario="{{ current_user.id_aula or '' }}">
+    {% include "/componentes/barra-navegacion.html" %}
+
+    <header class="text-center my-4">
+        <h1>Selecciona un Aula</h1>
+        <div class="d-flex gap-2  contenedor-botones-filtro">
+            <button type="button" class="btn btn-outline-light boton-filtro" data-tipo="todos">TODOS</button>
+            {% if current_user.rol == "alumno" %}
+            <button type="button" class="btn btn-outline-light boton-filtro" data-tipo="aulas">AULA</button>
+            <button type="button" class="btn btn-outline-light boton-filtro"
+                data-tipo="laboratorios">LABORATORIOS</button>
+            {% endif %}
+            {% if current_user.rol in ["soporte", "profesor","profesor-tecnica", "admin"] %}
+            <button type="button" class="btn btn-outline-light boton-filtro" data-tipo="aulas">AULAS</button>
+            <button type="button" class="btn btn-outline-light boton-filtro"
+                data-tipo="laboratorios">LABORATORIOS</button>
+            <button type="button" class="btn btn-outline-light boton-filtro"
+                data-tipo="preceptoria">PRECEPTORÍA</button>
+            <button type="button" class="btn btn-outline-light boton-filtro" data-tipo="secretaria">SECRETARÍA</button>
+            {% endif %}
+        </div>
+        <p class="text-muted">Haz clic en un aula para ver el estado de sus dispositivos.</p>
+    </header>
+
+    {% include "/componentes/mostrar-aulas.html" %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module" src="{{ url_for('static', filename='js/mostrarAulas.js') }}"></script>
+</body>
+
+</html>

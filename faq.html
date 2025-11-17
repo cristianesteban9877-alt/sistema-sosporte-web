@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}">
+	<title>Preguntas Frecuentes</title>
+</head>
+
+<body class="bg-light fondo-faq">
+	<header> 
+		{% include "/componentes/barra-navegacion.html" %}
+	</header>
+
+	<section>
+		<h1 class="titulo"><b>Preguntas Frecuentes</b></h1>
+		<!-- acordeon que tienen diferentes informaciones -->
+		<div class="accordion w-75 mx-auto" id="acordeonPreguntasFrecuentes">
+			<!-- Acordeon que contiene la primera pregunta -->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseOne">
+						<strong>¿Cómo registro mi usuario?</strong>
+					</button>
+				</h2>
+				<!-- Respuesta a la primera pregunta-->
+				<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+					<div class="accordion-body">
+						<p class="fuente">Un administrador debe registrar tu cuenta dependiendo de tu rol como usuario (soporte, alumno, profesor).</p>
+					</div>
+				</div>
+			</div>
+			<!-- Acordeon que contiene la segunda pregunta-->
+			<div class="accordion-item">
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseTwo">
+						<strong>¿Cómo inicio sesión?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+					<!-- respuesta a la segunda pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Una vez el administrador registra tu cuenta te hará saber cuál es tu usuario y contraseña para iniciar sesión.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la tercera pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseThree">
+						<strong>¿Cómo puedo ver mi aula?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+					<!-- Respuesta de la tercera pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Una vez iniciada la sesión el sistema te llevará a la pantalla de selección de aulas o al aula que puedas reportar, ahí podrás ver el estado de las aulas.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la cuarta pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseFour">
+						<strong>¿Qué significan los colores en las computadoras?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+					<!-- Respuesta de la cuarta pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Los colores e iconos representan el estado de la computadora, siendo los siguientes: </p>
+						<ul>
+							<li><b>Verde:</b> la computadora está disponible y funciona perfectamente.</li>
+							<li><b>Rojo:</b> la computadora está marcada como no disponible debido a un problema u error crítico que impide su funcionamiento y por lo tanto se recomienda no usarla.</li>
+							<li><b>Amarillo:</b> significa que la computadora se encuentra en revisión. También indica que la computadora puede ser usada pero tiene ciertos problemas en su funcionamiento pendientes a arreglo por parte del soporte técnico.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la quinta pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseFive">
+						<strong>¿Cómo puedo realizar un reporte?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+					<!-- Respuesta de la quinta pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Una vez ingresado al aula podrás ver las computadoras identificadas por su código, podrás seleccionar la computadora que tiene el problema y realizar un reporte especificando este problema por escrito en el campo de texto habilitado y quedando pendiente a la revisión del soporte.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la sexta pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseSix">
+						<strong>¿Por qué no puedo reportar una computadora y aparece no disponible?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
+					<!-- Respuesta de la sexta pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Las computadoras que aparecen en color gris no están disponibles ya que no se encuentran instaladas en el espacio de trabajo. En caso de que esto sea un error comuníquese con soporte.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la séptima pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseSeven">
+						<strong>La información de los componentes de una computadora se encuentra desactualizada, ¿qué hago?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse">
+					<!-- Respuesta de la séptima pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">En caso de que una computadora tenga datos erróneos o no especificados puede comunicarlo a soporte con un mismo reporte que detalle este problema.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la octava pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseEight">
+						<strong>He hecho un reporte en una computadora pero ha surgido otro problema/me he equivocado de máquina, ¿qué hago?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse">
+					<!-- Respuesta de la octava pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">En caso de que se haya equivocado al realizar un reporte o haya surgido un nuevo problema en una computadora ya reportada, puede añadir un nuevo reporte a esta máquina especificando esta misma situación “Me equivoqué al realizar un reporte, la computadora funciona”/“La computadora tiene [problema anterior] y además [problema nuevo]”</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la novena pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseNine">
+						<strong>¿Cómo puedo actualizar información de los dispositivos de un aula como el proyector, el audio o el splitter?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse">
+					<!-- Respuesta de la novena pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Los miembros de soporte y los profesores pueden indicar si el proyector, splitter y audio del aula están habilitados haciendo uso de los toggles que aparecen arriba en cada aula. Los alumnos no pueden editar estos estados pero pueden ver si están o no habilitados.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la décima pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseTen" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseTen">
+						<strong>¿Cómo puedo cambiar los componentes de una computadora?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse">
+					<!-- Respuesta de la décima pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Los miembros de soporte pueden cambiar editar los componentes de una computadora en la pantalla de Gestionar donde podrán crear o editar la información de un gabinete haciendo uso de un formulario sobre el procesador, memoria RAM, sistema operativo y demás cosas. Los alumnos y profesores no pueden editar estos campos.</p>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<!-- Acordeon que contiene la undécima pregunta -->
+				<h2 class="accordion-header">
+					<button class="accordion-button collapsed acordeon" type="button" data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseEleven" aria-expanded="false"
+						aria-controls="panelsStayOpen-collapseEleven">
+						<strong>¿Cómo puedo asignar un nuevo gabinete a una computadora?</strong>
+					</button>
+				</h2>
+				<div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse">
+					<!-- Respuesta de la décima pregunta -->
+					<div class="accordion-body">
+						<p class="fuente">Los miembros de soporte pueden asignar un nuevo gabinete seleccionando una computadora, retirando el gabinete actual y asignando uno nuevo haciendo uso de los respectivos botones. Los alumnos y profesores (salvo el profesor de técnica) no pueden retirar un gabinete y asignar uno nuevo.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

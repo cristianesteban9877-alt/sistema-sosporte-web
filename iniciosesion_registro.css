@@ -1,0 +1,117 @@
+/* =================================== */
+/* ESTILOS PARA LOGIN Y REGISTRO       */
+/* =================================== */
+.imagen-logo {
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: var(--color-verde-claro);
+  font-weight: bold;
+}
+
+.contenedor {
+  background-color: var(--color-blanco);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 50px auto;
+  color: var(--color-verde-claro);
+  box-shadow: 0 20px 20px var(--color-sombra);
+  border: 1px solid var(--color-verde-claro);
+}
+
+.form-control {
+  background-color: var(--color-blanco);
+  color: var(--color-negro);
+  border-radius: 10px;
+  padding: 0.6rem;
+  border: 1px solid var(--color-blanco);
+}
+
+.form-control:focus {
+  border-color: var(--color-verde-claro) !important;
+  box-shadow: 0 0 0 0.25rem rgba(20, 90, 50, 0.25) !important;
+  outline: none;
+}
+
+.form-label {
+  color: var(--color-verde-claro);
+  font-weight: bold;
+}
+
+#formularioLogin input[type="email"],
+#formularioLogin input[type="password"] {
+  border: 2px solid #145A32; 
+  border-radius: 6px;      
+  padding: 8px;            
+}
+
+.boton-personalizado {
+  background-color: var(--color-verde-claro);
+  border: 2px solid var(--color-verde-claro);
+  color: var(--color-blanco);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  padding: 10px 25px;
+}
+
+.boton-volver{
+  background-color: var(--base-color-gris-boton-volver);
+  border: 2px solid var(--color-gris);
+  color: var(--color-blanco);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  padding: 10px 25px;
+  display: flex;
+  flex-direction: column;
+  /* Centrar el botón en el contenedor */
+  margin: 0 auto;
+}
+
+.boton-volver a {
+  text-decoration: none !important;
+  color: var(--color-blanco);
+}
+
+/* Quitar el efecto blanco heredado de Bootstrap al pasar el mouse o enfocar */
+.boton-volver:hover,
+.boton-volver:focus,
+.boton-volver:active {
+  background-color: var(--hover-color-gris-boton-volver);
+  border-color: var(--color-gris);
+  color: var(--color-blanco);
+  box-shadow: none !important;
+  outline: none;
+}
+
+.boton-volver a:hover,
+.boton-volver a:focus {
+  color: var(--color-blanco);
+  text-decoration: none;
+}
+
+.boton-personalizado:hover {
+  background-color: var(--color-verde-oscuro);
+  border-color: var(--color-verde-oscuro);
+  color: var(--color-blanco);
+}
+
+.contenedor-boton-centrado {
+  display: flex;
+  justify-content: center;
+}
+
+.icono-ver-contrasena {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(1.2);
+  right: 15px;
+  cursor: pointer;
+  user-select: none;
+  color: var(--color-gris);
+}

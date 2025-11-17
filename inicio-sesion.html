@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <title>Inicio Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/iniciosesion_registro.css') }}" />
+</head>
+
+<body class="bg-light">
+    <header>
+        <nav>
+            <a href="{{ url_for('inicio') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="imagen-logo" />
+            </a>
+        </nav>
+    </header>
+    <br />
+    <section>
+        <h1><b>Iniciar sesión</b></h1>
+        <div class="contenedor">
+            <form id="formularioLogin">
+                <div class="mb-3">
+                    <label for="email" class="form-label"><b>Email:</b></label>
+                    <input type="email" class="form-control" id="email" name="email" required autocomplete="email"
+                        spellcheck="false" autocapitalize="off" pattern="[^\s]+" title="No se permiten espacios"
+                        oninput="this.value = this.value.replace(/\s/g, '').toLowerCase()" />
+                </div>
+                <div class="mb-3">
+                    <label for="contrasenia" class="form-label"><b>Contraseña:</b></label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="contrasenia" name="contrasenia" required
+                            autocomplete="current-password" spellcheck="false" pattern="[^\s]+"
+                            title="No se permiten espacios" oninput="this.value = this.value.replace(/\s/g, '')">
+                        <button class="btn btn-outline-secondary boton-ver-contrasena" type="button">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+                    </div>
+                </div>
+                <p id="mensaje-error" class="text-center text-danger fw-bold"></p>
+                <div class="contenedor-boton-centrado">
+                    <button type="submit" class="btn boton-personalizado">
+                        <b>Iniciar sesión</b>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <button class="btn boton-volver">
+            <a href="{{ url_for('inicio') }}"><b>Volver a inicio</b></a>
+        </button>
+
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="{{ url_for('static', filename='js/iniciosesion.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seleccionamos TODOS los botones que tengan la clase 'boton-ver-contrasena'.
+            const botonesVer = document.querySelectorAll('.boton-ver-contrasena');
+
+            botonesVer.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    const campoContrasenia = boton.previousElementSibling;
+                    const icono = boton.querySelector('i');
+
+                    if (campoContrasenia.type === 'password') {
+                        campoContrasenia.type = 'text';
+                        icono.classList.remove('bi-eye-fill');
+                        icono.classList.add('bi-eye-slash-fill');
+                    } else {
+                        campoContrasenia.type = 'password';
+                        icono.classList.remove('bi-eye-slash-fill');
+                        icono.classList.add('bi-eye-fill');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

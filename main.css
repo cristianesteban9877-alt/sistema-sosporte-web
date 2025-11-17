@@ -1,0 +1,164 @@
+@font-face {
+	font-family: 'Alte Haas Grotesk';
+	src: url('../fonts/AlteHaasGroteskRegular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@font-face {
+	font-family: 'Alte Haas Grotesk Bold';
+	src: url('../fonts/AlteHaasGroteskBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: bold;
+}
+
+
+:root {
+	--color-verde-claro: #145A32;
+	--color-verde-oscuro: #0b3f21;
+	--color-verde-claro-sutil: #75e7a4;
+	--color-blanco: #f8f9fa;
+	--color-negro: #212529;
+	--color-gris: #212529;
+	--color-sombra: rgba(0, 0, 0, 0.05);
+	--base-color-gris-boton-volver: #3f4346;
+	--hover-color-gris-boton-volver: #4e5357;
+	--fuente-principal: 'Alte Haas Grotesk', sans-serif;
+	--fuente-titulos: 'Alte Haas Grotesk Bold', sans-serif;
+}
+
+
+* {
+	font-family: var(--fuente-principal);
+}
+
+
+body {
+	padding-top: 100px;
+	background-color: var(--color-blanco);
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--fuente-titulos);
+}
+
+
+body nav.navbar.barra-navegacion-global {
+	background: var(--color-verde-claro);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+body nav.navbar.barra-navegacion-global .navbar-brand {
+	color: var(--color-blanco);
+	font-weight: bold;
+}
+
+
+.dropdown-item:focus,
+.dropdown-item:active {
+	background-color: #145A32 !important;
+	color: #fff !important;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+	border-color: #0b3f21 !important;
+	/* color del borde al enfocar */
+	box-shadow: 0 0 0 0.2rem rgba(11, 63, 33, 0.25) !important;
+	/* sombra opcional */
+	outline: none !important;
+}
+
+
+.modal-header {
+	background-color: var(--color-verde-claro);
+	color: var(--color-blanco);
+}
+
+
+.modal-header .btn-close {
+	filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+
+.modal-backdrop {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+	/* z-index: 1040 !important; <-- ESTA LÍNEA DABA EL PROBLEMA */
+}
+
+
+.modal-backdrop.fade {
+	opacity: 0;
+	transition: opacity 0.15s linear;
+}
+
+
+.modal-backdrop.show {
+	opacity: 0.5;
+}
+
+
+body.modal-open {
+	overflow: hidden !important;
+}
+
+
+/* ================================================ */
+/* 🟣 ANIMACIONES GLOBALES REUTILIZABLES             */
+/* ================================================ */
+
+/* 🔹 Keyframes para la animación (Aparecer y subir) */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+/* 🔹 Clase base para aplicar la animación */
+.anim-fade-in-up {
+	animation: fadeInUp 0.8s ease-out forwards;
+	opacity: 0;
+	/* Inicia invisible */
+	animation-fill-mode: forwards;
+	/* Mantiene el estado final */
+}
+
+
+/* 🔹 Clases de retraso (delay) */
+.anim-delay-1 {
+	animation-delay: 1s;
+}
+
+
+.anim-delay-2 {
+	animation-delay: 1.5s;
+}
+
+
+.anim-delay-3 {
+	animation-delay: 0.5s;
+}

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+      <title>Gestión del sistema</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+         rel="stylesheet" />
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+         rel="stylesheet" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/gestionar.css') }}"
+         />
+   </head>
+   <body class="bg-light" data-usuario-id="{{ current_user.id }}" data-rol-usuario="{{
+      current_user.rol }}">
+      {% include "/componentes/barra-navegacion.html" %}
+      <div class="container mt-5 pt-5" id="gestionar-container">
+         <header class="text-center my-4">
+            <h1>Gestión del Sistema</h1>
+         </header>
+         {% if current_user.rol == "admin" %}
+         <section id="gestion-usuarios" class="seccion-gestionar">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+               <h2 class="mb-0">Usuarios</h2>
+               <div class="d-flex align-items-center gap-2">
+                  <input type="text" id="buscadorIdUsuario" class="form-control"
+                     placeholder="Buscar usuario..."
+                     style="width: 200px;">
+                  <button id="botonBuscarUsuario" class="btn btn-secondary">
+                  <i class="bi bi-search"></i> Buscar
+                  </button>
+                  <a href="{{ url_for('registrarse') }}" class="btn btn-primary">
+                  <i class="bi bi-plus-circle"></i> Crear nuevo usuario
+                  </a>
+               </div>
+            </div>
+            <div class="table-responsive">
+               <table class="table table-striped table-hover">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th class="id">ID</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th class="text-center">Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody id="tablaUsuarios"></tbody>
+               </table>
+            </div>
+         </section>
+         <section id="gestion-aulas" class="seccion-gestionar">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+               <h2>Aulas</h2>
+               <div class="d-flex gap-2 ms-auto">
+                  <input
+                     type="text" id="buscadorIdaula" class="form-control"
+                     placeholder="Buscar aula..."
+                     style="width: 200px;">
+                  <button id="botonBuscaraula" class="btn btn-secondary">
+                  <i class="bi bi-search"></i> Buscar
+                  </button>
+                  <button class="btn btn-primary" data-bs-toggle="modal"
+                     data-bs-target="#modalCrearAula">
+                  <i class="bi bi-plus-circle"></i> Añadir nueva aula
+                  </button>
+               </div>
+            </div>
+            <div class="table-responsive">
+               <table class="table table-striped table-hover">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>BDR Máximas</th>
+                        <th class="text-center">Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody id="tablaAulas"></tbody>
+               </table>
+            </div>
+         </section>
+         {% endif %}
+         <section id="gestion-gabinetes" class="seccion-gestionar">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+               <h2>Lista de gabinetes</h2>
+               <div class="d-flex gap-2">
+                  <input type="text" id="buscadorIdgabinete" class="form-control"
+                     placeholder="Buscar gabinete..."
+                     style="width: 200px;">
+                  <button id="botonBuscargabinete" class="btn btn-secondary">
+                  <i class="bi bi-search"></i> Buscar
+                  </button>
+                  <button class="btn btn-primary" data-bs-toggle="modal"
+                     data-bs-target="#modalGabinete">
+                  <i class="bi bi-plus-circle"></i> Añadir gabinete
+                  </button>
+               </div>
+            </div>
+            <div class="table-responsive">
+               <table class="table table-striped table-hover">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th>ID</th>
+                        <th>Motherboard</th>
+                        <th>Procesador</th>
+                        <th>RAM</th>
+                        <th>Disco</th>
+                        <th>SO</th>
+                        <th>Fuente</th>
+                        <th>Aula BDR</th>
+                        <th class="text-center">Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody id="tablaGabinetes"></tbody>
+               </table>
+            </div>
+         </section>
+         <section id="gestion-monitores" class="seccion-gestionar">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+               <h2>Lista de monitores</h2>
+               <div class="d-flex gap-2">
+                  <input type="text" id="buscadorIdmonitor" class="form-control"
+                     placeholder="Buscar monitor..."
+                     style="width: 200px;">
+                  <button id="botonBuscargmonitor" class="btn btn-secondary">
+                  <i class="bi bi-search"></i> Buscar
+                  </button>
+                  <button class="btn btn-primary" data-bs-toggle="modal"
+                     data-bs-target="#modalMonitor">
+                  <i class="bi bi-plus-circle"></i> Añadir monitor
+                  </button>
+               </div>
+            </div>
+            <div class="table-responsive">
+               <table class="table table-striped table-hover">
+                  <thead class="thead-dark">
+                     <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Salida de Video</th>
+                        <th>Aula + BDR</th>
+                        <th class="text-center">Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody id="tablaMonitores"></tbody>
+               </table>
+            </div>
+         </section>
+         <div class="modal fade" id="modalGestion" tabindex="-1"
+            aria-labelledby="modalGestionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="modalGestionLabel"></h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <form id="formularioGestion">
+                        <input type="hidden" id="editId" name="editId" />
+                        <input type="hidden" id="editTipo" name="editTipo" />
+                        <div id="formularioBody"></div>
+                     </form>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancelar</button>
+                     <button type="button" class="btn btn-primary"
+                        onclick="guardarCambios()">Guardar Cambios</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade" id="modalCrearAula" tabindex="-1"
+            aria-labelledby="modalCrearAulaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <form id="formularioCrearAula">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="modalCrearAulaLabel">Crear Nueva
+                           Aula
+                        </h5>
+                        <button type="button" class="btn-close"
+                           data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                     </div>
+                     <div class="modal-body">
+                        <div class="mb-3">
+                           <label for="idAulaCrear" class="form-label">ID del Aula
+                           (ej: 1001)</label>
+                           <input type="number" class="form-control"
+                              id="idAulaCrear" name="id_aula" required>
+                        </div>
+                        <div class="mb-3">
+                           <label for="nombreAula" class="form-label">Nombre del
+                           Aula (ej: 1A)</label>
+                           <input type="text" class="form-control" id="nombreAula"
+                              name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                           <label for="bdrMax" class="form-label">Cantidad de
+                           Computadoras (BDR)</label>
+                           <input type="number" class="form-control" id="bdrMax"
+                              name="bdr_max" required min="0">
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                           data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar
+                        Aula</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade" id="modalGabinete" tabindex="-1"
+            aria-labelledby="modalGabineteLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="modalGabineteLabel">Registrar Nuevo
+                        Gabinete
+                     </h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <form id="formularioGabinete">
+                        <div class="mb-3">
+                           <label for="motherboard"
+                              class="form-label">Motherboard</label>
+                           <input type="text" class="form-control" id="motherboard"
+                              name="motherboard">
+                        </div>
+                        <div class="mb-3">
+                           <label for="procesador"
+                              class="form-label">Procesador</label>
+                           <input type="text" class="form-control" id="procesador"
+                              name="procesador">
+                        </div>
+                        <div class="mb-3">
+                           <label for="ram" class="form-label">RAM</label>
+                           <input type="text" class="form-control" id="ram"
+                              name="ram">
+                        </div>
+                        <div class="mb-3">
+                           <label for="disco" class="form-label">Disco</label>
+                           <input type="text" class="form-control" id="disco"
+                              name="disco">
+                        </div>
+                        <div class="mb-3">
+                           <label for="fuenteAlimen" class="form-label">Fuente de
+                           Alimentación</label>
+                           <input type="text" class="form-control"
+                              id="fuenteAlimen" name="fuenteAlimen" >
+                        </div>
+                        <div class="mb-3">
+                           <label for="so" class="form-label">Sistema
+                           Operativo</label>
+                           <input type="text" class="form-control" id="so"
+                              name="so">
+                        </div>
+                        <div class="modal-footer">
+                           <button type="submit" class="btn btn-primary"
+                              style="background-color: var(--color-verde-claro);
+                              border-color: var(--color-verde-claro);">Agregar
+                           nuevo
+                           gabinete</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade" id="modalMonitor" tabindex="-1"
+            aria-labelledby="modalMonitorLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="modalMonitorLabel">Registrar Nuevo
+                        Monitor
+                     </h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <form id="formularioMonitor">
+                        <div class="mb-3">
+                           <label for="marca" class="form-label">Marca</label>
+                           <input type="text" class="form-control" id="marca"
+                              name="marca" required>
+                        </div>
+                        <div class="mb-3">
+                           <label for="modelo" class="form-label">Modelo</label>
+                           <input type="text" class="form-control" id="modelo"
+                              name="modelo">
+                        </div>
+                        <div class="mb-3">
+                           <label for="salida-video" class="form-label">Salida de
+                           Video</label>
+                           <select class="form-select" id="salida-video"
+                              name="salida-video">
+                              <option value="" selected disabled> </option>
+                              <option value="VGA">VGA</option>
+                              <option value="HDMI">HDMI</option>
+                              <option value="DVI">DVI</option>
+                           </select>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="submit" class="btn btn-primary"
+                              style="background-color: var(--color-verde-claro);
+                              border-color: var(--color-verde-claro);">Agregar
+                           nuevo
+                           Monitor</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-labelledby="modalConfirmarEliminarLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content">
+                  <div class="modal-header bg-danger text-white">
+                     <h5 class="modal-title" id="modalConfirmarEliminarLabel"><i class="bi bi-exclamation-triangle-fill"></i> Confirmar Eliminación</h5>
+                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                  </div>
+                  <div class="modal-body" id="cuerpoConfirmarEliminar">
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                     <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <template id="plantillaUsuario">
+         <tr>
+            <td class="id"></td>
+            <td class="email"></td>
+            <td class="rol"></td>
+            <td>
+               <div class="acciones-tabla">
+                  <button class="btn btn-sm btn-warning boton-editar boton-accion"
+                     title="Editar"><i
+                     class="bi bi-pencil"></i></button>
+                  <button class="btn btn-sm btn-danger boton-eliminar
+                     boton-accion"
+                     title="Eliminar"><i class="bi
+                     bi-trash"></i></button>
+               </div>
+            </td>
+         </tr>
+      </template>
+      <template id="plantillaAula">
+         <tr>
+            <td class="id"></td>
+            <td class="nombre"></td>
+            <td class="bdr"></td>
+            <td>
+               <div class="acciones-tabla">
+                  <button class="btn btn-sm btn-warning boton-editar boton-accion"
+                     title="Editar"><i
+                     class="bi bi-pencil"></i></button>
+                  <button class="btn btn-sm btn-danger boton-eliminar
+                     boton-accion" title="Eliminar"><i
+                     class="bi bi-trash"></i></button>
+               </div>
+            </td>
+         </tr>
+      </template>
+      <template id="plantillaGabinete">
+         <tr>
+            <td class="id"></td>
+            <td class="motherboard"></td>
+            <td class="procesador"></td>
+            <td class="ram"></td>
+            <td class="disco"></td>
+            <td class="so"></td>
+            <td class="fuente"></td>
+            <td class="aula-bdr"></td>
+            <td>
+               <div class="acciones-tabla">
+                  <button class="btn btn-sm btn-warning boton-editar boton-accion"
+                     title="Editar"><i
+                     class="bi bi-pencil"></i></button>
+                  <button class="btn btn-sm btn-danger boton-eliminar
+                     boton-accion" title="Eliminar"><i class="bi
+                     bi-trash"></i></button>
+               </div>
+            </td>
+         </tr>
+      </template>
+      <template id="plantillaMonitor">
+         <tr>
+            <td class="id"></td>
+            <td class="marca"></td>
+            <td class="modelo"></td>
+            <td class="salida-video"></td>
+            <td class="aula-bdr"></td>
+            <td>
+               <div class="acciones-tabla">
+                  <button class="btn btn-sm btn-warning boton-editar boton-accion"
+                     title="Editar"><i
+                     class="bi bi-pencil"></i></button>
+                  <button class="btn btn-sm btn-danger boton-eliminar
+                     boton-accion" title="Eliminar"><i class="bi
+                     bi-trash"></i></button>
+               </div>
+            </td>
+         </tr>
+      </template>
+      <template id="plantillaFormInput">
+         <div class="mb-3">
+            <label class="form-label"></label>
+            <input class="form-control">
+         </div>
+      </template>
+      <template id="plantillaFormSelect">
+         <div class="mb-3">
+            <label class="form-label"></label>
+            <select class="form-select"></select>
+         </div>
+      </template>
+      <script
+         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+      <script type="module" src="{{ url_for('static', filename='js/gestionar.js')
+         }}"></script>
+      <script
+         type="module" src="{{ url_for('static',
+         filename='js/agregarhardware.js') }}"></script>
+   </body>
+</html>

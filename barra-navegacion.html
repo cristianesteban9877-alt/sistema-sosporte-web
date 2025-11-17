@@ -1,0 +1,47 @@
+<nav class="navbar navbar-dark fixed-top p-3 barra-navegacion-global">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('seleccionar_aulas') if current_user.is_authenticated else
+ url_for('inicio') }}">
+      <img src="{{ url_for('static', filename='img/logo_nav.png') }}" alt="Logo" width="120" height="72">
+    </a>
+
+    {% if current_user.is_authenticated %}
+    <div class="dropdown">
+      <button class="btn btn-outline-light dropdown-toggle" type="button" id="menuDesplegableUsuario"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-circle"></i> Bienvenido, {{ current_user.email |
+        extraer_nombre }}
+      </button>
+      <ul class="dropdown-menu
+ dropdown-menu-end" aria-labelledby="menuDesplegableUsuario">
+
+        <li><a class="dropdown-item" href="{{ url_for('seleccionar_aulas') }}">
+            <i class="bi bi-house-door"></i> Seleccionar aulas
+          </a></li>
+        <li><a class="dropdown-item" href="{{ url_for('mostrar_faq') }}">
+            <i class="bi bi-question-circle"></i> Preguntas Frecuentes
+          </a></li>
+
+        {% if current_user.rol in ["admin", "soporte", "profesor-tecnica"] %}
+        <li><a class="dropdown-item" href="{{ url_for('gestionar') }}">
+            <i class="bi bi-gear"></i> Gestionar
+          </a></li>
+        {% endif %}
+
+        <li><a class="dropdown-item text-danger" href="{{ url_for('cerrar_sesion') }}">
+            <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+          </a></li>
+
+      </ul>
+    </div>
+
+    {% else %}
+
+    <button class="btn btn-outline-light">
+      <a href="{{ url_for('iniciosesion') }}" style="color: #fff; text-decoration:
+ none;">Iniciar Sesión</a>
+    </button>
+
+    {% endif %}
+  </div>
+</nav>

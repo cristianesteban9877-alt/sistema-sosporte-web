@@ -1,0 +1,155 @@
+/* Estilo para los botones del modal */
+.modal-footer .btn {
+    font-weight: bold; /* Pone el texto en negrita */
+    border-radius: 5px; /* Redondea los bordes */
+}
+
+/* Estilo específico para el botón de confirmar */
+.modal-footer .btn-primary {
+    background-color: #145A32;
+    border-color: #145A32;
+    color: white;
+}
+
+.modal-footer .btn-primary:active,
+.modal-footer .btn-secondary:active {
+    background-color: #145A32; /* Mismo verde */
+    border-color: #145A32;
+}
+
+#modalInfoBdr .modal-body .col-lg-7 {
+  max-height: calc(90vh - 120px); /* Ajusta este cálculo si es necesario */
+  overflow-y: auto;
+}
+
+.contenedorBdr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.tarjeta-bdr {
+    width: 180px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    border-left: 5px solid var(--color-gris);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta-bdr:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-bdr img {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    object-fit: contain;
+}
+
+.tarjeta-bdr .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.tarjeta-bdr .texto-estado {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.tarjeta-bdr.estado-funcionando {
+    border-left-color: var(--color-exito);
+}
+
+.tarjeta-bdr.estado-funcionando .texto-estado {
+    color: var(--color-exito);
+}
+
+.tarjeta-bdr.estado-en-revision {
+    border-left-color: var(--color-advertencia);
+}
+
+.tarjeta-bdr.estado-en-revision .texto-estado {
+    color: var(--color-advertencia);
+}
+
+.tarjeta-bdr.estado-no-disponible {
+    border-left-color: var(--color-gris);
+    background-color: #f1f1f1;
+}
+
+.tarjeta-bdr.estado-no-disponible .texto-estado {
+    color: var(--color-gris);
+}
+
+.tarjeta-bdr.estado-no-funciona {
+    border-left-color: var(--color-peligro);
+}
+
+.tarjeta-bdr.estado-no-funciona .texto-estado {
+    color: var(--color-peligro);
+}
+
+.estado-bdr-imagen-modal {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin: 0;
+}
+
+#selectEstadoMouse,
+#selectEstadoTeclado {
+    font-weight: 500;
+}
+
+#infoGabinete ul li,
+#infoMonitor ul li {
+  font-size: 20px; /* Prueba este valor, ajústalo si es necesario (ej: 1rem, 15px) */
+}
+
+#selectEstadoMouse:disabled,
+#selectEstadoTeclado:disabled {
+    cursor: not-allowed;
+    background-color: #e9ecef;
+    pointer-events: none;
+}
+
+.seccion-hardware-info ul {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
+
+.seccion-hardware-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.seccion-hardware-vacia {
+    border: 2px dashed #dee2e6;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    display: flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    flex-grow: 1;
+}
+
+.hardware-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.hardware-col>b {
+    margin-bottom: 0.5rem;
+}

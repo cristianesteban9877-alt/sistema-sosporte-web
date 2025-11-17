@@ -1,0 +1,33 @@
+#contenedorAulas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.tarjeta-aula {
+  width: 280px;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.tarjeta-aula:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.tarjeta-aula .card-title {
+  font-size: 1.5rem;
+  color: var(--color-verde-claro);
+}
+
+.tarjeta-aula .card-text span {
+  font-weight: bold;
+}
+
+.tarjeta-aula .bdr-disponibles {
+  color: var(--color-exito);
+}

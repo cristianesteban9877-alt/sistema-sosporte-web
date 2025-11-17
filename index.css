@@ -1,0 +1,202 @@
+/* ================================================ */
+/* ESTILOS PÁGINA INDEX */
+/* ================================================ */
+body {
+    padding-top: 0;
+    background-image: url("../img/fondo_index.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.fuente,
+li {
+    color: var(--color-negro);
+}
+
+/* ? Contenido principal */
+.contenido-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 0;
+    width: 100%;
+    position: relative;
+}
+
+/* ? Título con verde claro y borde blanco */
+.contenido-index h2 {
+    font-size: 3rem;
+    color: var(--color-verde-claro);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    -webkit-text-stroke: 4px #fff;
+    paint-order: stroke fill;
+}
+
+/* ? Logo principal */
+.logo-index {
+    max-width: 420px;
+    height: auto;
+    margin-bottom: 2.5rem;
+    transform: scale(0.9);
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+}
+
+/* ? NUEVO: Contenedor con fondo verde transparente para descripción y botones */
+.contenedor-info {
+    background-color: rgba(20, 90, 50, 0.7);
+    backdrop-filter: blur(8px);
+    padding: 35px 45px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ? Texto de descripción dentro del contenedor */
+.contenedor-info p {
+    max-width: 100%;
+    margin: 0 0 30px;
+    font-size: 1.3rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* ? Contenedor de los enlaces */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 0;
+}
+
+/* ? Enlaces estilizados con FONDO VERDE */
+.nav-links a {
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #fff;
+    padding: 12px 28px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    background: rgba(20, 90, 50, 0.9);
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ? Efecto hover */
+.nav-links a:hover {
+    background: #fff;
+    color: #145A32;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* ? Enlace activo */
+.nav-links a.active {
+    background: #fff;
+    color: #145A32;
+    font-weight: 600;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+/* ? Responsivo */
+@media (max-width: 768px) {
+    .contenedor-info {
+        padding: 25px 30px;
+        border-radius: 15px;
+        max-width: 90%;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .contenido-index h2 {
+        font-size: 2.2rem;
+    }
+
+    .contenedor-info p {
+        font-size: 1rem;
+    }
+
+    .logo-index {
+        max-width: 280px;
+        margin-bottom: 2rem;
+    }
+}
+
+/* ================================================ */
+/* ESTILOS PARA EL ACORDEÓN */
+/* ================================================ */
+.acordeon {
+    background-color: var(--color-verde-claro);
+    color: var(--color-blanco);
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--color-verde-oscuro);
+    color: var(--color-blanco);
+    box-shadow: none !important;
+}
+
+.accordion-button {
+    border-color: var(--color-verde-claro) !important;
+    box-shadow: none !important;
+}
+
+.accordion-button::after {
+    background-image: none !important;
+    content: '▼';
+    position: absolute;
+    right: 1.2rem;
+    font-size: 1rem;
+    color: var(--color-blanco);
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+}
+
+.modal.fade .modal-dialog {
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal.fade.show .modal-dialog {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.fuente {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.acordeon strong {
+    color: #fff;
+}
+
+.modal .accordion-item {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.modal .accordion-item:has(.accordion-collapse.show) {
+    border-color: var(--color-verde-oscuro, #155724);
+}

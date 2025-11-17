@@ -1,0 +1,63 @@
+/* ================================================ */
+/* ESTILOS PÁGINA FAQ                               */
+/* ================================================ */
+.fondo-faq {
+    background-color: var(--color-blanco);
+    background-image: none;
+}
+
+.titulo{
+    color: var(--color-negro);
+    font-size: 50px;
+    padding: 6rem;
+}
+
+p {
+    text-indent: 15px;
+}
+
+h1 {
+    text-align: center;
+    padding: 50px;
+}
+
+/* ================================================ */
+/* ESTILOS PARA EL ACORDEÓN                         */
+/* ================================================ */
+.acordeon {
+    background-color: var(--color-verde-claro);
+    color: var(--color-blanco);
+    transition: background-color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--color-verde-oscuro);
+    color: var(--color-blanco);
+    box-shadow: none !important;
+}
+
+.accordion-button {
+    border-color: var(--color-verde-claro) !important;
+    box-shadow: none !important;
+    font-size: 1.2rem;
+    padding-left: 5%;
+}
+
+.accordion-button::after {
+    background-image: none !important;
+    content: '▼';
+    position: absolute;
+    right: 1.2rem;
+    font-size: 1rem;
+    color: var(--color-blanco);
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+}
+
+.accordion-body {
+  font-size: 1.1rem;
+}

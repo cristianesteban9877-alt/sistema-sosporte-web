@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+
+    <title>Inicio</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body class="bg-light">
+    <main class="contenido-index text-center text-light" id="contenido">
+        <div class="container d-flex flex-column justify-content-center align-items-center">
+            <h2 class="fw-bold mb-3 anim-fade-in-up anim-delay-3">Bienvenido a</h2>
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"
+                class="logo-index anim-fade-in-up anim-delay-1" />
+
+            <!-- NUEVO CONTENEDOR CON FONDO VERDE TRANSPARENTE -->
+            <div class="contenedor-info anim-fade-in-up anim-delay-2">
+                <p class="mb-4">
+                    <b>Explora la introducción para conocer la idea, funcionamiento y créditos
+                    del proyecto.</b>
+                </p>
+                <div class="nav-links">
+                    <a href="{{ url_for('mostrar_faq') }}">Preguntas frecuentes</a>
+                    <a href="{{ url_for('iniciosesion') }}">Iniciar sesión</a>
+                    <a href="#" id="abrirIntroduccion">Introducción al sistema</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <div class="modal fade" id="modalIntroduccion" tabindex="-1" aria-labelledby="modalIntroduccionLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalIntroduccionLabel">Introducción al Sistema</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <section>
+                        <div class="accordion" id="acordeonPreguntasFrecuentes">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed acordeon" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                                        <strong>Idea</strong>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h2>
+                                            <strong>¿Cómo nació la idea del proyecto?</strong>
+                                        </h2>
+                                        <p>
+                                            El <strong>Sistema de Soporte Sagrado Corazón Al. Cal</strong> (SsSC) trata
+                                            sobre una <strong>página web y aplicación móvil</strong> diseñadas para
+                                            administrar el soporte técnico de la escuela. Ofrecemos una
+                                            <strong>visualización de dispositivos ordenada</strong> por aulas y un
+                                            <strong>sistema de reportes</strong> que otorga una actualización para la
+                                            visión de estado de las computadoras.<br>
+                                            Con este sistema se pueden <strong>registrar, editar, eliminar y
+                                                controlar</strong> todos los dispositivos de todas las aulas con
+                                            permisos distribuidos entre cinco tipos de usuarios:
+                                            <strong>Administrador, Soporte técnico, Profesor, Profesor de Técnica y
+                                                Alumno.</strong><br>
+                                            Luego de haber formado el grupo de proyecto teníamos que pensar un proyecto
+                                            que se pueda aplicar a una página web y aplicación móvil además de que debía
+                                            ser útil, este proyecto lo llevaríamos a cabo durante lo que restara del
+                                            <strong>ciclo lectivo 2025</strong>. Tras debatirlo con el grupo decidimos
+                                            crear el sistema de soporte con el objetivo de crear algo que pueda
+                                            utilizarse en <strong>años posteriores</strong>. Una vez la idea fue
+                                            aprobada por los profesores, el grupo se comprometió para llevar el
+                                            desarrollo a cabo.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed acordeon" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                        <strong>¿Cómo funciona?</strong>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h2>
+                                            <strong>¿Cómo funciona el sistema?</strong>
+                                        </h2>
+                                        <p>
+                                            Este sistema permite <strong>visualizar el estado de los
+                                                dispositivos</strong>
+                                            en tiempo real, <strong>generar reportes</strong> detallados sobre problemas
+                                            específicos, <strong>asignar o desasignar gabinetes o monitores</strong>,
+                                            así como <strong>registrar, eliminar o editar</strong> la información de
+                                            usuarios, gabinetes, monitores y aulas.<br>
+                                            El sistema está compuesto por dos plataformas principales: <strong>una
+                                                página web y una aplicación móvil</strong>. Ambas versiones ofrecerán
+                                            las mismas funcionalidades, permitiendo a los usuarios realizar las mismas
+                                            acciones desde cualquier dispositivo. La plataforma estará diseñada bajo una
+                                            <strong>arquitectura centralizada</strong>, lo que garantiza que cualquier
+                                            modificación o actualización realizada desde uno de los entornos (web o
+                                            móvil) se refleje automáticamente en el otro, gracias a la conexión a
+                                            <strong>una base de datos común</strong>. Esta sincronización en tiempo real
+                                            asegura la coherencia de la información y una experiencia de usuario fluida
+                                            y continua.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed acordeon" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                        <strong>Créditos</strong>
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <h2 class="fuente">
+                                            <strong>Quienes hicieron posible este proyecto</strong>
+                                        </h2>
+                                        <ul>
+                                            <li><strong>Valentina Zarate</strong> - Desarrolladora, encargada de control
+                                                de calidad, documentación y presentaciones.</li>
+                                            <li><strong>Leonardo Quiroga</strong> - Desarrollador, programador
+                                                Backend/Frontend, administrador de base de datos.</li>
+                                            <li><strong>Thiago Encina</strong> - Desarrollador, programador
+                                                Backend/Frontend, diseñador UX.</li>
+                                            <li><strong>Cristian Arias</strong> - Desarrollador, maquetador, encargado
+                                                del control de calidad.</li>
+                                            <li><strong>Ko Vargas</strong> - Diseñador de maqueta, diseñador UI,
+                                                diseñador de documentación.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const botonIntro = document.getElementById("abrirIntroduccion");
+            const modalIntro = new bootstrap.Modal(document.getElementById("modalIntroduccion"));
+
+            botonIntro.addEventListener("click", (e) => {
+                e.preventDefault();
+                modalIntro.show();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

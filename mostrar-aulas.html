@@ -1,0 +1,14 @@
+<div id="contenedorAulas" class="d-flex flex-wrap px-3"></div>
+<template id="plantilla-aula">
+  <div class="card m-2 p-3 tarjeta-aula" style="width: 18rem;">
+    <h5 class="card-title" data-aula="nombre"></h5>
+    <p class="card-text">
+      PCs Funcionando:
+      <span data-aula="bdr_disponibles"></span> /
+      <span data-aula="bdr_max"></span><br />
+      Proyector: <span data-aula="proyector"></span><br />
+      Audio: <span data-aula="audio"></span>
+    </p>
+    <button class="btn btn-primary" data-aula="boton" style="background-color: var(--color-verde-claro); border-color: var(--color-verde-claro);">Revisar</button>
+  </div>
+</template>

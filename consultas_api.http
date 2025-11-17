@@ -1,0 +1,189 @@
+
+### METODOS GET
+GET https://soporte2025.pythonanywhere.com/computadoras
+Content-Type: application/json
+
+### 1. REGISTRAR USUARIO
+POST https://soporte2025.pythonanywhere.com/registrar_usuario
+Content-Type: application/json
+
+{
+  "email": "tito.gonzales@gmail.com",
+  "rol": "profesor",
+  "contrasenia": "999",
+  "id_aula": 1009
+}
+
+### 2. CREAR AULA
+POST https://soporte2025.pythonanywhere.com/crear_aula
+Content-Type: application/json
+
+{
+  "id_aula": 1008,
+  "nombre": "5B",
+  "bdr_max": 7,
+  "proyector": 1,
+  "splitter": 1,
+  "audio": 1
+}
+
+### 3. CREAR GABINETE
+POST https://soporte2025.pythonanywhere.com/crear_gabinete
+Content-Type: application/json
+
+{
+  "id_gabinete": 4001,
+  "ram": "8GB",
+  "disco": "500GB HDD",
+  "so": "Windows 11 Pro",
+  "procesador": "Intel Core i5-10400",
+  "motherboard": "ASUS H310",
+  "fuenteAlimen": "500W"
+}
+
+### 4. CREAR MONITOR
+POST https://soporte2025.pythonanywhere.com/crear_monitor
+Content-Type: application/json
+
+{
+  "id_monitor": 3001,
+  "marca": "Dell",
+  "modelo": "P2419H"
+}
+
+### 5. CREAR COMPUTADORA
+POST https://soporte2025.pythonanywhere.com/crear_computadora
+Content-Type: application/json
+
+{
+  "id_bdr": 2001,
+  "id_aula": "A101",
+  "id_gabinete": "GAB001",
+  "id_monitor": "MON001",
+  "estado_actual": "Disponible",
+  "estado_mouse": "Funcionando",
+  "estado_teclado": "Funcionando"
+}
+
+### 6. CREAR REPORTE
+POST https://soporte2025.pythonanywhere.com/crear_reporte
+Content-Type: application/json
+
+{
+  "id_reportes": "REP001",
+  "fec_aviso": "2024-01-15 10:30:00",
+  "info_problema": "No enciende el monitor",
+  "estado_nuevo": "En reparación",
+  "id_usuario": 1,
+  "id_bdr": "PC001",
+  "id_aula": "A101",
+  "id_gabinete": "GAB001",
+  "id_monitor": "MON001"
+}
+
+### 7. LOGIN DE USUARIO
+POST https://soporte2025.pythonanywhere.com/login_usuario
+Content-Type: application/json
+
+{
+  "email": "admin@ejemplo.com",
+  "contrasenia": "password123"
+}
+
+### 8. ACTUALIZAR ESTADO DE COMPUTADORA
+PUT https://soporte2025.pythonanywhere.com/actualizar_estado_computadora/PC001/A101
+Content-Type: application/json
+
+{
+  "estado_actual": "En mantenimiento"
+}
+
+### 9. ACTUALIZAR AULA
+PUT https://soporte2025.pythonanywhere.com/actualizar_aula/1005
+Content-Type: application/json
+
+{
+  "nombre": "1B",
+  "bdr_max": 1,
+  "proyector": 1,
+  "splitter": 1,
+  "audio": 1
+}
+
+### 10. ACTUALIZAR GABINETE
+PUT https://soporte2025.pythonanywhere.com/actualizar_gabinete/GAB001
+Content-Type: application/json
+
+{
+  "ram": "16GB DDR4",
+  "disco": "1TB SSD",
+  "so": "Windows 11",
+  "procesador": "Intel i7",
+  "motherboard": "ASUS B460",
+  "fuenteAlimen": "600W"
+}
+
+### 11. ACTUALIZAR MONITOR
+PUT https://soporte2025.pythonanywhere.com/actualizar_monitor/MON001
+Content-Type: application/json
+
+{
+  "marca": "HP",
+  "modelo": "EliteDisplay E243"
+}
+
+### 12. ACTUALIZAR USUARIO (reemplazar 1 con ID real)
+PUT https://soporte2025.pythonanywhere.com/actualizar_usuario/33
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "rol": "admin",
+  "contrasenia": "123456"
+  
+}
+
+### 13. OBTENER TODOS LOS USUARIOS
+GET https://soporte2025.pythonanywhere.com/obtener_usuarios
+
+### 14. OBTENER TODAS LAS AULAS
+GET https://soporte2025.pythonanywhere.com/obtener_aulas
+
+### 15. OBTENER TODOS LOS GABINETES
+GET https://soporte2025.pythonanywhere.com/obtener_gabinetes
+
+### 16. OBTENER TODOS LOS MONITORES
+GET https://soporte2025.pythonanywhere.com/obtener_monitores
+
+### 17. OBTENER TODAS LAS COMPUTADORAS
+GET https://soporte2025.pythonanywhere.com/obtener_computadoras
+
+### 18. OBTENER TODOS LOS REPORTES
+GET https://soporte2025.pythonanywhere.com/obtener_reportes
+
+### 19. OBTENER COMPUTADORAS POR AULA
+GET https://soporte2025.pythonanywhere.com/obtener_computadoras_aula/A101
+
+### 20. OBTENER REPORTES POR USUARIO (reemplazar 1 con ID real)
+GET https://soporte2025.pythonanywhere.com/reportes_por_usuario/1
+
+### 21. OBTENER REPORTES POR COMPUTADORA
+GET https://soporte2025.pythonanywhere.com/reportes_por_computadora/PC001/A101
+
+### 22. ELIMINAR USUARIO (reemplazar 2 con ID real)
+DELETE https://soporte2025.pythonanywhere.com/eliminar_usuario/13
+
+### 23. ELIMINAR AULA
+DELETE https://soporte2025.pythonanywhere.com/eliminar_aula/1008
+
+### 24. ELIMINAR GABINETE
+DELETE https://soporte2025.pythonanywhere.com/eliminar_gabinete/25
+
+### 25. ELIMINAR MONITOR
+DELETE https://soporte2025.pythonanywhere.com/eliminar_monitor/MON002
+
+### 26. ELIMINAR COMPUTADORA
+DELETE https://soporte2025.pythonanywhere.com/eliminar_computadora/PC002/A101
+
+### 27. ELIMINAR REPORTE (reemplazar 1 con ID real)
+DELETE https://soporte2025.pythonanywhere.com/eliminar_reporte/1

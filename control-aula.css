@@ -1,0 +1,59 @@
+#contenedorBdr .tarjeta-interactiva {
+    width: 14rem !important; /* Aumentado de 12rem a 14rem */
+    padding: 1rem !important;
+}
+
+.control-dispositivos-aula {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-suave);
+    max-width: 800px;
+}
+
+.form-switch .form-check-input {
+    width: 3.5em;
+    height: 1.75em;
+    cursor: pointer;
+}
+
+.contenedor-historial {
+    max-height: 70vh;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: .375rem;
+}
+
+/* ===== Agrandar los toggles ===== */
+.switch-dispositivos-aula {
+    width: 3.5rem;
+    height: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.switch-dispositivos-aula::before {
+    width: 1.4rem;
+    height: 1.4rem;
+    top: 0.3rem;
+    left: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.switch-dispositivos-aula:checked::before {
+    transform: translateX(1.5rem);
+}
+
+.switch-dispositivos-aula:checked {
+    background-color: var(--color-verde-claro) !important;
+    border-color: var(--color-verde-claro) !important;
+}
+
+/* ===== Estilos para los indicadores de estado ===== */
+.status-indicator {
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.tarjeta-interactiva:hover .status-indicator {
+    transform: scale(1.1);
+}

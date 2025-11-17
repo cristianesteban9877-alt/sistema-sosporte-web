@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <title>Agregar Hardware</title>
+</head>
+
+<body class="bg-light">
+  {% include "/componentes/barra-navegacion.html" %}
+
+  <div class="container mt-5 pt-5">
+    <header class="text-center my-4">
+      <h1>Agregar Hardware</h1>
+    </header>
+
+    <div class="row text-center">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-lg p-5 tarjeta-interactiva" data-bs-toggle="modal" data-bs-target="#modalGabinete">
+          <h2><i class="bi bi-pc-display"></i> Nuevo Gabinete</h2>
+          <p class="text-muted">Registrar un nuevo gabinete en el sistema</p>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-lg p-5 tarjeta-interactiva" data-bs-toggle="modal" data-bs-target="#modalMonitor">
+          <h2><i class="bi bi-display"></i> Nuevo Monitor</h2>
+          <p class="text-muted">Registrar un nuevo monitor en el sistema</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="{{ url_for('static', filename='js/agregarhardware.js') }}"></script>
+</body>
+
+</html>
